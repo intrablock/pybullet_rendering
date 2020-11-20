@@ -218,7 +218,8 @@ class OffscreenRenderer:
             fbp.set_depth_bits(16)
             self._window = self._engine.make_output(self._pipe, 'buffer', 0, fbp,
                                                     WindowProperties.size(*window_size),
-                                                    GraphicsPipe.BFRefuseWindow)
+                                                    # GraphicsPipe.BFRefuseWindow)
+                                                    GraphicsPipe.BFRequireWindow)
             if self._window is None:
                 raise RuntimeError("GraphicsPipe cannot make offscreen buffers")
             self._window_size = window_size

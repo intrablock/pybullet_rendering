@@ -19,3 +19,9 @@ copy bullet3/src/LinearMath to ./src
 python setup.py build --bullet_dir './'
 copy build/lib.win-amd64-3.7/pybullet_rendering/bindings.cp37-win_amd64.pyd to ./pybullet_rendering
 ```
+
+# Run examples
+```
+python panda3d_gui.py
+python performance.py
+```

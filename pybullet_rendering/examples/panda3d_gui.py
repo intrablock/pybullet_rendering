@@ -4,6 +4,8 @@ import pybullet as pb
 import pybullet_data
 
 from pybullet_utils.bullet_client import BulletClient
+import sys
+sys.path.append('../../')
 from pybullet_rendering import RenderingPlugin, BaseRenderer, ShapeType
 from pybullet_rendering.render.panda3d import PbMaterial
 from pybullet_rendering.render.utils import shape_filename

@@ -4,9 +4,11 @@ import pkgutil
 import pybullet as pb
 import pybullet_data
 
-from PIL import Image
+# from PIL import Image
 from timeit import default_timer as timer
 from pybullet_utils.bullet_client import BulletClient
+import sys
+sys.path.append('../../')
 from pybullet_rendering import RenderingPlugin
 
 parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
@@ -14,9 +16,14 @@ parser.add_argument('-f', '--frame_size', nargs='+', default=[256, 256], help='F
 parser.add_argument('-e',
                     '--engines',
                     nargs='+',
-                    default=['tiny', 'egl', 'pyrender', 'panda3d'],
+                    default=['tiny', 'panda3d'],
                     help='Engines to test')
 
+from panda3d.core import loadPrcFileData
+loadPrcFileData("",
+    f"""
+    model-path {pybullet_data.getDataPath()}
+    """)
 
 class PerformanceTest:
     """Performance test
@@ -33,10 +40,10 @@ class PerformanceTest:
     def run(self):
         # warmup
         color, depth = self._render_frame()
-        img = Image.fromarray(color[:, :, :3])
-        img.save(f'color_{self._engine}.png')
-        img = Image.fromarray(((depth / depth.max()) * 255).astype(np.uint8))
-        img.save(f'depth_{self._engine}.png')
+        # img = Image.fromarray(color[:, :, :3])
+        # img.save(f'color_{self._engine}.png')
+        # img = Image.fromarray(((depth / depth.max()) * 255).astype(np.uint8))
+        # img.save(f'depth_{self._engine}.png')
         # count fps
         num_frames = 1000
         start = timer()
