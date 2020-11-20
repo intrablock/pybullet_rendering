@@ -16,6 +16,7 @@ typedef std::array<float, 4 * 4> Matrix4f;
 typedef Vector4f Quaternionf;
 typedef Vector3f Color3f;
 typedef Vector4f Color4f;
+#define M_PI 3.14159265358979323846
 
 /**
  * @brief Affine transform in 3D
