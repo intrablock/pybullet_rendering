@@ -1,4 +1,4 @@
-# zy1111: get texture with image reader
+# zy1112: read objfile to get texture
 
 import argparse
 import numpy as np
@@ -39,6 +39,15 @@ def GetTexture(file_name):
     # dims = r.GetOutput().GetDimensions()
     # print(dims)
     return t
+
+from objloader import OBJ
+def readOBJ(file_name):
+    obj = OBJ(file_name)
+    # print(obj.mtl)
+    for name, mtl in obj.mtl.items():
+        if 'texture_Kd' in mtl:
+            return mtl['texture_Kd']
+    return ''
 
 
 class VtkRenderer(BaseRenderer):
@@ -180,12 +189,17 @@ class VtkRenderer(BaseRenderer):
                 actor.GetProperty().SetSpecularColor(material.specular_color)
                 # actor.GetProperty().SetOpacity(1)
 
-                texture_id = material.diffuse_texture
-                # set texture
-                if texture_id > -1:
-                    tex = scene_graph.texture(texture_id)
-                    t = GetTexture(tex.filename)
-                    actor.SetTexture(t)
+                # texture_id = material.diffuse_texture
+                # # set texture
+                # if texture_id > -1:
+                #     tex = scene_graph.texture(texture_id)
+                #     t = GetTexture(tex.filename)
+                
+                if filename.endswith('.obj'):
+                    tkd = readOBJ(filename)
+                    if tkd:
+                        t = GetTexture(tkd)
+                        actor.SetTexture(t)
 
 
                 self.render.AddActor(actor)

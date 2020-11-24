@@ -1,7 +1,8 @@
 # pybullet_rendering
 External rendering for [PyBullet](https://github.com/bulletphysics/bullet3/) simulator.
 
-Tested on Windows10.
+Tested on Windows10. Add VTK renderer.
+
 See the original [README.md](oldREADME.md)
 
 # dependency
@@ -28,4 +29,5 @@ python performance.py
 python qpanda3d_gui.py
 python vtk_gui.py
 ```
-Note: Texture is not renderered with vtk for now.
+Note: As texture is not supported by RenderingPlugin, read on your own.
+objloader.py is borrowed from https://github.com/yarolig/OBJFileLoader
