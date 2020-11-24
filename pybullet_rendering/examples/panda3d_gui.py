@@ -8,7 +8,7 @@ import sys
 sys.path.append('../../')
 from pybullet_rendering import RenderingPlugin, BaseRenderer, ShapeType
 from pybullet_rendering.render.panda3d import PbMaterial
-from pybullet_rendering.render.utils import shape_filename
+from pybullet_rendering.render.utils import shape_filename_relpath
 
 from direct.filter.CommonFilters import CommonFilters
 from direct.showbase.ShowBase import ShowBase
@@ -171,7 +171,7 @@ class MyApp(BaseRenderer, ShowBase):
             self.nodes[k] = node
 
             for j, pb_shape in enumerate(v.shapes):
-                filename = shape_filename(pb_shape)
+                filename = shape_filename_relpath(pb_shape)
                 if not filename:
                     continue
 
@@ -213,5 +213,6 @@ class MyApp(BaseRenderer, ShowBase):
         return False
 
 
-app = MyApp()
-app.run()
+if __name__ == "__main__":    
+    app = MyApp()
+    app.run()

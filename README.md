@@ -8,6 +8,7 @@ See the original [README.md](oldREADME.md)
 ```
 pip install pybullet
 pip install QPanda3D
+pip install vtk
 ```
 
 # build pybullet_rendering
@@ -25,4 +26,6 @@ copy build/lib.win-amd64-3.7/pybullet_rendering/bindings.cp37-win_amd64.pyd to .
 python panda3d_gui.py
 python performance.py
 python qpanda3d_gui.py
+python vtk_gui.py
 ```
+Note: Texture is not renderered with vtk for now.

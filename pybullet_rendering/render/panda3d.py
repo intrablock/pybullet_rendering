@@ -15,7 +15,7 @@ from panda3d.core import loadPrcFileData
 from direct.showbase import Loader
 
 from pybullet_rendering import BaseRenderer
-from .utils import shape_filename
+from .utils import shape_filename_relpath
 
 __all__ = ['Renderer', 'PbMaterial']
 
@@ -97,7 +97,7 @@ class Renderer(BaseRenderer):
         for uid, pb_node in scene_graph.nodes.items():
             node = NodePath(f'pb_node_{uid:03d}')
             for pb_shape in pb_node.shapes:
-                filename = shape_filename(pb_shape)
+                filename = shape_filename_relpath(pb_shape)
                 if not filename:
                     continue
                 shape = self._loader.load_model(filename)

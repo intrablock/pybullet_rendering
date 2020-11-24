@@ -24,7 +24,7 @@ import pybullet_data
 from pybullet_utils.bullet_client import BulletClient
 from pybullet_rendering import RenderingPlugin, BaseRenderer, ShapeType
 from pybullet_rendering.render.panda3d import PbMaterial
-from pybullet_rendering.render.utils import shape_filename
+from pybullet_rendering.render.utils import shape_filename_relpath
 
 from direct.task import Task
 from panda3d.core import Vec3, Vec4, Quat, Vec2
@@ -185,7 +185,7 @@ class PandaTest(BaseRenderer, Panda3DWorld):
             self.nodes[k] = node
 
             for j, pb_shape in enumerate(v.shapes):
-                filename = shape_filename(pb_shape)
+                filename = shape_filename_relpath(pb_shape)
                 if not filename:
                     continue
 
